@@ -20,8 +20,7 @@
 // }
 
 node {
-  docker.image('node:lts-bullseye-slim')
-  docker.args('-p 3000:3000')
+  withDockerContainer([image='node:lts-bullseye-slim',args='-p 3000:3000'])
   stage('Build') {
     sh 'npm install'
   }
