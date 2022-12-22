@@ -20,9 +20,10 @@
 // }
 
 node {
-  // withDockerContainer([image='node:lts-bullseye-slim',args='-p 3000:3000'])
   stage('Build') {
-    sh 'npm install'
+    docker.image([image='node:lts-bullseye-slim',args='-p 3000:3000']).inside {
+      sh 'npm install'
+    }
   }
   stage('Test') {
     sh './jenkins/scripts/test.sh'
